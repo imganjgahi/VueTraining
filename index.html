@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-on:input="changeTitle">
+        <p> {{ message }} </p>
+        <p> {{ renderDescription() }} </p>
+    </div>
+
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                link: "mg.co"
+            },
+            methods: {
+                changeTitle: function (event) {
+                    this.message = event.target.value
+                },
+                renderDescription : function() {
+                    return "This a paragraph! for " + this.message + " Page"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
