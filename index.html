@@ -12,9 +12,12 @@
 <body>
     <div id="app">
         <h3>Ingredients</h3>
-        <template v-for="(prson, index) in persons">
-            <p>
-                <pre> <span> {{index}}) </span><span v-for="(info, key, index) in prson">{{key}}: {{info}} &#9; </span></pre>
+        <template v-for="(person, index) in persons">
+            <p :key="person.id" id="p1">
+                <span> {{index}}) </span>
+                <span v-for="(info, key, x) in person" v-if="x > 0">
+                    {{key}}: {{info}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                </span>
             </p>
             <hr>
         </template>
@@ -28,8 +31,8 @@
             data: {
                ingredients: ["apple", "orange", "Cherry"],
                persons: [
-                   {name: "Mehran", age: 36, color: "gold"},
-                   {name: "Sheeva", age: "unknown", color: "blue"},
+                   {id: "id1", name: "Mehran", age: 36, color: "gold"},
+                   {id: "id2", name: "Sheeva", age: "unknown", color: "blue"},
                ]
             },
             computed: {
