@@ -12,11 +12,11 @@
 <body>
     <div id="app">
         <h3>Ingredients</h3>
-        <template v-for="(item, index) in ingredients">
+        <template v-for="(prson, index) in persons">
             <p>
-                <b> {{item}} </b> )
-                <span> order: {{index}} </span>
+                <pre> <span> {{index}}) </span><span v-for="(info, key, index) in prson">{{key}}: {{info}} &#9; </span></pre>
             </p>
+            <hr>
         </template>
     </div>
 
