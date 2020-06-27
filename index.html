@@ -32,6 +32,16 @@
                     return this.counter > 4 ? "greater than 4" : "less than 4"
                 }
             },
+            watch: {
+                counter: function (value) {
+
+                    const vm = this;
+
+                    setTimeout(() => {
+                        vm.counter = 0
+                    }, 2000);
+                }
+            },
             methods: {
                 result: function () {
                     console.log("result")
