@@ -11,22 +11,9 @@
 
 <body>
     <div id="app">
-        <div 
-        class="demo"
-        @click="attachRed = !attachRed"
-        :class="divClasses"
-        ></div>
-        <div 
-        class="demo"
-        @click="attachgreen = !attachgreen"
-        :class="{green: attachgreen}"
-        ></div>
-        <div 
-        class="demo"
-        :style="{backgroundColor: color}"
-        ></div>
-        <hr>
-        <input type="text" v-model="color">
+        <p v-if="show"> You can see me</p>
+        <p v-else> You can also see me </p>
+        <button @click="show = !show">Show Mood</button>
     </div>
 
 
@@ -35,18 +22,9 @@
         var app = new Vue({
             el: '#app',
             data: {
-                attachRed:  false,
-                attachgreen:  false,
-                attachblue:  false,
-                color:"blue"
+                show: true
             },
             computed: {
-                divClasses: function() {
-                    return {
-                        red: this.attachRed,
-                        green: !this.attachRed
-                    }
-                }
             }
         })
     </script>
