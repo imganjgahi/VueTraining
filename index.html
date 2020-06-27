@@ -10,11 +10,10 @@
 
 <body>
     <div id="app">
-            <p> COUNT:  {{counter}} Other counter: {{otherCounter}} </p>
-            <button v-on:click="counter++">Up</button>
-            <button v-on:click="counter--">Down</button>
-            <button v-on:click="otherCounter--">Down</button>
-            <p>Result: {{result()}} || {{output}} </p>
+            <p> COUNT:  {{counter}} </p>
+            <button @click="counter++">Up</button>
+            <button @click="counter--">Down</button>
+            <p> <a :href="link">Made by MG</a> </p>
     </div>
 
 
@@ -24,29 +23,7 @@
             el: '#app',
             data: {
               counter: 0,
-              otherCounter: 0
-            },
-            computed: {
-                output: function() {
-                    console.log("computed")
-                    return this.counter > 4 ? "greater than 4" : "less than 4"
-                }
-            },
-            watch: {
-                counter: function (value) {
-
-                    const vm = this;
-
-                    setTimeout(() => {
-                        vm.counter = 0
-                    }, 2000);
-                }
-            },
-            methods: {
-                result: function () {
-                    console.log("result")
-                    return this.counter > 4 ? "greater than 4" : "less than 4"
-                }
+              link: "mg.org"
             }
         })
     </script>
