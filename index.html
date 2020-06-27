@@ -13,10 +13,7 @@
     <div id="app">
         <p v-if="show"> You can see me</p>
         <p v-else> You can also see me </p>
-        <template v-if="show">
-            <p>inside a <b>template</b></p>
-            <p>this is also inside the template</p>
-        </template>
+        <p v-show="show"> You can also display me </p>
         <button @click="show = !show">Show Mood</button>
     </div>
 
