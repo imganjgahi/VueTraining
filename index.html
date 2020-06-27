@@ -10,13 +10,11 @@
 
 <body>
     <div id="app">
-        <h1 v-once> Counter </h1>
-        <p> {{ counter }} </p>
-        <button v-on:click="increase(2, $event)"> Increase </button>
-        <p v-on:mousemove="mouseMoveHandler">Position: X: {{position.x}} / Y: {{position.y}} 
-            <span v-on:mousemove.stop="">Dummy Span</span> </p>
-
-            <input type="text" v-on:keyup.enter.space = "alertMe">
+            <p> COUNT:  {{counter}} Other counter: {{otherCounter}} </p>
+            <button v-on:click="counter++">Up</button>
+            <button v-on:click="counter--">Down</button>
+            <button v-on:click="otherCounter--">Down</button>
+            <p>Result: {{result()}} || {{output}} </p>
     </div>
 
 
@@ -25,25 +23,19 @@
         var app = new Vue({
             el: '#app',
             data: {
-              counter: 1,
-              position: {
-                  x: 10,
-                  y: 20
-              }
+              counter: 0,
+              otherCounter: 0
+            },
+            computed: {
+                output: function() {
+                    console.log("computed")
+                    return this.counter > 4 ? "greater than 4" : "less than 4"
+                }
             },
             methods: {
-                increase: function(amount, event) {
-                    this.counter += amount
-                },
-                mouseMoveHandler: function (event) {
-                    this.position.x = event.clientX;
-                    this.position.y = event.clientY;
-                },
-                nothing: function(event) {
-                    event.stopPropagation()
-                },
-                alertMe: function () {
-                    alert("AlertMe")
+                result: function () {
+                    console.log("result")
+                    return this.counter > 4 ? "greater than 4" : "less than 4"
                 }
             }
         })
