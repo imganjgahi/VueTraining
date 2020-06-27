@@ -11,10 +11,10 @@
 
 <body>
     <div id="app">
-        <p v-if="show"> You can see me</p>
-        <p v-else> You can also see me </p>
-        <p v-show="show"> You can also display me </p>
-        <button @click="show = !show">Show Mood</button>
+        <h3>Ingredients</h3>
+        <ul>
+            <li v-for="(item, i) in ingredients">{{i + 1}}) {{item}}  </li>
+        </ul>
     </div>
 
 
@@ -23,7 +23,11 @@
         var app = new Vue({
             el: '#app',
             data: {
-                show: true
+               ingredients: ["apple", "orange", "Cherry"],
+               persons: [
+                   {name: "Mehran", age: 36, color: "gold"},
+                   {name: "Sheeva", age: "unknown", color: "blue"},
+               ]
             },
             computed: {
             }
