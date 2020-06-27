@@ -13,7 +13,8 @@
         <h1 v-once> Counter </h1>
         <p> {{ counter }} </p>
         <button v-on:click="increase(2, $event)"> Increase </button>
-        <p v-on:mousemove="mouseMoveHandler">Position: X: {{position.x}} / Y: {{position.y}} <span v-on:mousemove="nothing">Dummy Span</span> </p>
+        <p v-on:mousemove="mouseMoveHandler">Position: X: {{position.x}} / Y: {{position.y}} 
+            <span v-on:mousemove.stop="">Dummy Span</span> </p>
     </div>
 
 
