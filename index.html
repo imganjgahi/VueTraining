@@ -12,7 +12,7 @@
     <div id="app">
         <h1 v-once> Counter </h1>
         <p> {{ counter }} </p>
-        <button v-on:click="increase"> Increase </button>
+        <button v-on:click="increase(2, $event)"> Increase </button>
         <p v-on:mousemove="mouseMoveHandler">Position: X: {{position.x}} / Y: {{position.y}} </p>
     </div>
 
@@ -29,8 +29,8 @@
               }
             },
             methods: {
-                increase: function() {
-                    this.counter++
+                increase: function(amount, event) {
+                    this.counter += amount
                 },
                 mouseMoveHandler: function (event) {
                     this.position.x = event.clientX;
