@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./vue.js"></script>
+</head>
+<body>
+    
+
+    <div id="app">
+        <div class="board">
+            <div class="score">
+                <p>PLAYER</p>
+                <div class="healthBar">
+                    <div class="healthBarAmount" :style="{width: player + '%'}">
+                        {{player}}
+                    </div>
+                </div>
+            </div>
+            <div class="score">
+                <p>ENEMY</p>
+                <div class="healthBar">
+                    <div class="healthBarAmount" :style="{width: enemy + '%'}">
+                        {{enemy}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action">
+            <template v-if="gameOn">
+                <button @click="playerAttack">Attack</button>
+                <button @click="playerSuperAttack">Special Attack</button>
+                <button @click="playerHeal">Heal</button>
+                <button @click="gameOver">Give up</button>
+            </template>
+                <button v-else @click= "gameOn = !gameOn"> Start a new Game</button>
+        </div>
+    </div>
+
+    <script>
+
+        new Vue({
+            el: "#app",
+            data: {
+                gameOn: false,
+                player:100,
+                enemy: 100
+            },
+            watch: {
+                enemy: function(value) {
+                    if(value <= 0){
+                        this.gameOver()
+                    }
+                },
+                player: function(value) {
+                    if(value <= 0){
+                        this.gameOver()
+                    }
+                }
+            },
+            methods: {
+                gameOver: function () {
+                    this.player = 100
+                    this.enemy = 100
+                    this.gameOn = false
+                },
+                playerAttack : function() {
+                    this.enemy -= Math.floor(Math.random() * 15);
+                    this.enemyAttack();
+                },
+                playerSuperAttack: function() {
+                    this.enemy -= Math.floor(Math.random() * 25);
+                    this.enemySuperAttack();
+                },
+                playerHeal: function () {
+                    const newHealth =  this.player + Math.floor(Math.random() * 15)
+                    this.player = newHealth <= 100 ? newHealth : 100;
+                    this.enemyAttack()
+                },
+                enemyAttack: function() {
+                    this.player -= Math.floor(Math.random() * 15)
+                },
+                enemySuperAttack: function() {
+                    this.player -= Math.floor(Math.random() * 25)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
