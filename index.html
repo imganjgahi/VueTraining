@@ -10,12 +10,10 @@
 
 <body>
     <div id="app">
-        <h1 v-once> {{message}} </h1>
-        <input type="text" v-on:input="changeTitle">
-        <p> {{ message }}  <a v-bind:href="link">MG</a> </p>
-        <p> {{ renderDescription() }} </p>
-        <hr>
-        <p v-html="finishedLink"> </p>
+        <h1 v-once> Counter </h1>
+        <p> {{ counter }} </p>
+        <button v-on:click="increase"> Increase </button>
+        <p v-on:mousemove="mouseMoveHandler">Position: X: {{position.x}} / Y: {{position.y}} </p>
     </div>
 
 
@@ -24,16 +22,19 @@
         var app = new Vue({
             el: '#app',
             data: {
-                message: 'Hello Vue!',
-                link: "https://www.mg.co",
-                finishedLink : "<a href='mymg.co'>MG Link</a>"
+              counter: 1,
+              position: {
+                  x: 10,
+                  y: 20
+              }
             },
             methods: {
-                changeTitle: function (event) {
-                    this.message = event.target.value
+                increase: function() {
+                    this.counter++
                 },
-                renderDescription : function() {
-                    return "This a paragraph! for " + this.message + " Page"
+                mouseMoveHandler: function (event) {
+                    this.position.x = event.clientX;
+                    this.position.y = event.clientY;
                 }
             }
         })
