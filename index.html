@@ -14,6 +14,8 @@
         <input type="text" v-on:input="changeTitle">
         <p> {{ message }}  <a v-bind:href="link">MG</a> </p>
         <p> {{ renderDescription() }} </p>
+        <hr>
+        <p v-html="finishedLink"> </p>
     </div>
 
 
@@ -23,7 +25,8 @@
             el: '#app',
             data: {
                 message: 'Hello Vue!',
-                link: "mg.co"
+                link: "https://www.mg.co",
+                finishedLink : "<a href='mymg.co'>MG Link</a>"
             },
             methods: {
                 changeTitle: function (event) {
