@@ -1,0 +1,20 @@
+.demo {
+
+    width: 120px;
+    height: 120px;
+    background-color: grey;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 15px;
+}
+
+.red {
+    background-color: red;
+}
+.green {
+    background-color: yellowgreen;
+}
+.blue {
+    background-color: lightskyblue;
+}
+

@@ -5,15 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <script src="./vue.js"></script>
 </head>
 
 <body>
     <div id="app">
-            <p> COUNT:  {{counter}} </p>
-            <button @click="counter++">Up</button>
-            <button @click="counter--">Down</button>
-            <p> <a :href="link">Made by MG</a> </p>
+        <div 
+        class="demo"
+        @click="attachRed = !attachRed"
+        :class="{red: attachRed}"
+        ></div>
+        <div 
+        class="demo"
+        @click="attachgreen = !attachgreen"
+        :class="{green: attachgreen}"
+        ></div>
+        <div 
+        class="demo"
+        @click="attachblue = !attachblue"
+        :class="{blue: attachblue}"
+        ></div>
     </div>
 
 
@@ -22,8 +34,9 @@
         var app = new Vue({
             el: '#app',
             data: {
-              counter: 0,
-              link: "mg.org"
+                attachRed:  false,
+                attachgreen:  false,
+                // attachblue:  false,
             }
         })
     </script>
