@@ -12,17 +12,30 @@
 <body>
     
     <div id="app">
-        <h3 v-if="showList">Components: {{showList}}</h3>
+        <h3 v-if="showList">Components 1: {{showList}}</h3>
         <app-cmp></app-cmp>
         <app-cmp></app-cmp>
         <app-cmp></app-cmp>
         <button ref="btn" @click="updateDOM">Show Modal</button>
     </div>
+    <div id="app2">
+        <h3>Components 2: {{showList}}</h3>
+        <app-cmp></app-cmp>
+    </div>
 
     <script>
 
 
-        Vue.component("app-cmp", {
+        const cmp2 = {
+            data: function () {
+                return {
+                    msg: "Component element",
+                    times: 0,
+                }
+            },
+            template: "<p> This another local {{msg}} template </p> "
+        };
+        const cmp = {
             data: function () {
                 return {
                     msg: "Component Element",
@@ -30,18 +43,33 @@
                 }
             },
             template: "<p> This a {{msg}} Template <button @click='times++'> Click: {{times}} </button> </p> "
-        })
+        };
         
         var app = new Vue({
             el: '#app',
             data: {
-                showList: false,
+                showList: true,
+            },
+            components: {
+                "app-cmp": cmp
             },
             methods: {
                 updateDOM: function () {
                     this.showList = !this.showList
+                    app2.showList = this.showList
                     this.$refs.btn.innerText = this.showList ? "Hide" : "Show"
                 }
+            }
+        })
+
+        var app2 = new Vue({
+            el: "#app2",
+            data: {
+                showList: app.showList
+            },
+
+            components: {
+                "app-cmp": cmp2
             }
         })
         
