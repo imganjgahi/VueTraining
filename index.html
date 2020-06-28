@@ -12,7 +12,7 @@
 <body>
     <div id="app">
         <h3>Ingredients</h3>
-        <template v-for="(person, index) in persons">
+        <template v-for="(person, index) in persons" v-if="showList">
             <p :key="person.id" id="p1">
                 <span> {{index}}) </span>
                 <span v-for="(info, key, x) in person" v-if="x > 0">
@@ -21,6 +21,7 @@
             </p>
             <hr>
         </template>
+        <button ref="btn" @click="updateDOM">My Button</button>
     </div>
 
 
@@ -29,13 +30,18 @@
         var app = new Vue({
             el: '#app',
             data: {
+                showList: false,
                ingredients: ["apple", "orange", "Cherry"],
                persons: [
                    {id: "id1", name: "Mehran", age: 36, color: "gold"},
                    {id: "id2", name: "Sheeva", age: "unknown", color: "blue"},
                ]
             },
-            computed: {
+            methods: {
+                updateDOM: function () {
+                    this.showList = !this.showList
+                    this.$refs.btn.innerText = this.showList ? "Hide" : "Show"
+                }
             }
         })
     </script>
