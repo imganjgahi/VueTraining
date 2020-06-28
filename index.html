@@ -10,50 +10,48 @@
 </head>
 
 <body>
-    <div id="app-root">
-        <app-mg></app-mg>
-        <app-mg></app-mg>
-        <hr>
-    </div>
+    
     <div id="app">
         <h3 v-if="showList">Block 1</h3>
         <button ref="btn" @click="updateDOM">My Button</button>
+        <button @click="destroy">Destroyed</button>
     </div>
-
+    
     <div class="app2">
-
+        <button id="create">Create</button>
     </div>
 
     <script>
-        Vue.component("app-mg", {
-            template: "<h1> Mg Component</h1>"
-        })
-        new Vue({
-            el: "#app-root"
-        })
+
+
+        
         var app = new Vue({
             el: '#app',
             data: {
                 showList: false,
             },
+            beforeCreate: function() {console.log("before create")},
+            created: function() {console.log("created")},
+            beforeMount: function() {console.log("beforeMount")},
+            beforeUpdate: function() {console.log("beforeUpdate")},
+            updated: function() {console.log("updated")},
+            beforeDestroy: function() {console.log("beforeDestroy")},
+            destroyed: function() {console.log("destroyed")},
             methods: {
                 updateDOM: function () {
                     this.showList = !this.showList
                     this.$refs.btn.innerText = this.showList ? "Hide" : "Show"
+                },
+                destroy: function() {
+                    this.$destroy()
                 }
             }
         })
-
-        var app2 = new Vue({
-            template: "<h1> APP 2 </h1>"
-        })
-
-        // app2.$mount(".app2"); // OR ONOTHER WAY 
-        app2.$mount()
-        document.querySelector(".app2").appendChild(app2.$el);
-
         
-
+        document.getElementById("create").addEventListener("click", () => {
+            // app.$mount();
+            document.getElementById("app").innerHTML = app.$el
+        })
     </script>
 </body>
 
