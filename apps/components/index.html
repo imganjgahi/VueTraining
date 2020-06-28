@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    
+    <div id="app">
+        <h3 v-if="showList">Components: {{showList}}</h3>
+        <app-cmp></app-cmp>
+        <app-cmp></app-cmp>
+        <app-cmp></app-cmp>
+        <button ref="btn" @click="updateDOM">Show Modal</button>
+    </div>
+
+    <script>
+
+
+        Vue.component("app-cmp", {
+            data: function () {
+                return {
+                    msg: "Component Element",
+                    times: 0,
+                }
+            },
+            template: "<p> This a {{msg}} Template <button @click='times++'> Click: {{times}} </button> </p> "
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                showList: false,
+            },
+            methods: {
+                updateDOM: function () {
+                    this.showList = !this.showList
+                    this.$refs.btn.innerText = this.showList ? "Hide" : "Show"
+                }
+            }
+        })
+        
+    </script>
+</body>
+
+</html>
