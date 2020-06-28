@@ -11,31 +11,19 @@
 
 <body>
     <div id="app">
-        <h3>Ingredients</h3>
-        <template v-for="(person, index) in persons" v-if="showList">
-            <p :key="person.id" id="p1">
-                <span> {{index}}) </span>
-                <span v-for="(info, key, x) in person" v-if="x > 0">
-                    {{key}}: {{info}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-                </span>
-            </p>
-            <hr>
-        </template>
+        <h3 v-if="showList">Block 1</h3>
         <button ref="btn" @click="updateDOM">My Button</button>
     </div>
 
+    <div class="app2">
 
+    </div>
 
     <script>
         var app = new Vue({
             el: '#app',
             data: {
                 showList: false,
-               ingredients: ["apple", "orange", "Cherry"],
-               persons: [
-                   {id: "id1", name: "Mehran", age: 36, color: "gold"},
-                   {id: "id2", name: "Sheeva", age: "unknown", color: "blue"},
-               ]
             },
             methods: {
                 updateDOM: function () {
@@ -44,6 +32,14 @@
                 }
             }
         })
+
+        var app2 = new Vue({
+            template: "<h1> APP 2 </h1>"
+        })
+
+        // app2.$mount(".app2"); // OR ONOTHER WAY 
+        app2.$mount()
+        document.querySelector(".app2").appendChild(app2.$el)
     </script>
 </body>
 
