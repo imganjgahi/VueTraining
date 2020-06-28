@@ -10,6 +10,11 @@
 </head>
 
 <body>
+    <div id="app-root">
+        <app-mg></app-mg>
+        <app-mg></app-mg>
+        <hr>
+    </div>
     <div id="app">
         <h3 v-if="showList">Block 1</h3>
         <button ref="btn" @click="updateDOM">My Button</button>
@@ -20,6 +25,12 @@
     </div>
 
     <script>
+        Vue.component("app-mg", {
+            template: "<h1> Mg Component</h1>"
+        })
+        new Vue({
+            el: "#app-root"
+        })
         var app = new Vue({
             el: '#app',
             data: {
@@ -39,7 +50,10 @@
 
         // app2.$mount(".app2"); // OR ONOTHER WAY 
         app2.$mount()
-        document.querySelector(".app2").appendChild(app2.$el)
+        document.querySelector(".app2").appendChild(app2.$el);
+
+        
+
     </script>
 </body>
 
