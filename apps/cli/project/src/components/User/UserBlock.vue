@@ -3,9 +3,19 @@
         <h1>The User Component</h1>
         <p>awsome component</p>
         <button @click="changeName">Change My Name</button>
+        <p>
+            Name: {{name}} , Age: {{age}}
+        </p>
         <div class="action">
-            <UserDetail :myName="name" @nameWasReset="name = $event" />
-            <UserEdit />
+            <UserDetail 
+            :userName="name"
+            :userAge="age"
+            :resetFn="resetTheName"
+            @nameWasReset="name = $event" />
+            <UserEdit
+            :userAge="age"
+            @editAge ="age = $event"
+             />
         </div>
     </div>
 </template>
@@ -17,12 +27,16 @@ export default {
     name: "UserBlock",
     data: function () {
         return {
+            age: 36,
             name: "Mehran"
         }
     },
     methods: {
         changeName() {
             this.name = "Mehran Ganjgahi"
+        },
+        resetTheName() {
+            this.name = "Mehran"
         }
     },
     components: {

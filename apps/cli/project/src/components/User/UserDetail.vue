@@ -3,31 +3,41 @@
         <h1>The User Detail</h1>
         <p>DETAILS</p>
         <p>
-            <span>UserName: {{convertName()}}</span>
+            <span>UserName: {{convertName()}}</span> <br>
+            <span>age: {{userAge}}</span>
         </p>
         <div class="action">
             <button @click="resetName"> Reset </button>
+            <button @click="resetFn()"> Reset on parrent </button>
         </div>
     </div>
 </template>
 
 <script>
+import { eventBus } from "../../main"
 export default {
     name: "UserDetail",
     props: {
-        myName: {
+        userName: {
             type: String,
             default: "no name"
-        }
+        },
+        resetFn: Function,
+        userAge: Number
     },
     methods: {
         convertName() {
-            return this.myName.toUpperCase()
+            return this.userName.toUpperCase()
         },
         resetName() {
-            this.myName = "Mehran";
-            this.$emit("nameWasReset", this.myName)
+            this.userName = "Mehran";
+            this.$emit("nameWasReset", this.userName)
         }
+    },
+    created(){
+        eventBus.$on("editAge", (age) => {
+            this.userAge = age
+        })
     }
 }
 </script>
