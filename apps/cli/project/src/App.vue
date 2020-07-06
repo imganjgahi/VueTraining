@@ -1,23 +1,22 @@
 <template>
   <div id="app">
-    <Header></Header>
-    <UserBlock></UserBlock>
+    <Quete>
+      <h2>Quote</h2>
+       <p>A simple Quete </p>
+    </Quete>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-import Header from './components/Header';
-import UserBlock from "./components/User/UserBlock"
 
+import Quete from "./components/Quete/Quete"
 export default {
   name: 'App',
   data: () => ({
     message: "Data Message"
   }),
   components: {
-    Header,
-    UserBlock
+    Quete,
   }
 }
 </script>
@@ -26,11 +25,5 @@ export default {
 body {
   margin: 0;
 }
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+
 </style>
