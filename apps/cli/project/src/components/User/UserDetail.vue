@@ -3,7 +3,7 @@
         <h1>The User Detail</h1>
         <p>DETAILS</p>
         <p>
-            <span>UserName: {{name}}</span>
+            <span>UserName: {{convertName()}}</span>
         </p>
     </div>
 </template>
@@ -12,8 +12,13 @@
 export default {
     name: "UserDetail",
     props: [
-        'name'
-    ]
+        'myName'
+    ],
+    methods: {
+        convertName() {
+            return this.myName.toUpperCase()
+        }
+    }
 }
 </script>
 

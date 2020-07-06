@@ -4,7 +4,7 @@
         <p>awsome component</p>
         <button @click="changeName">Change My Name</button>
         <div class="action">
-            <UserDetail :name="name" />
+            <UserDetail :myName="name" />
             <UserEdit />
         </div>
     </div>
