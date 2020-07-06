@@ -2,7 +2,10 @@
     
     <div class="quete">
         <div class="title">    
-        <slot name="title"></slot>
+        <slot name="title">title</slot>
+        <span style="color: #ccc">
+            <slot name="subTitle" > subTitle Slot</slot>
+        </span>
         </div>
        <slot name="content"></slot>
        <slot></slot>
