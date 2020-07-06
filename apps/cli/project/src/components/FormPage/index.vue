@@ -49,8 +49,11 @@
                 
             </select>
         </div>
+        <div class="submit">
+            <button @click.prevent="onSubmit">Submit</button>
+        </div>
     </form>
-        <div class="details">
+        <div class="details" v-if="formSubmited">
             <p> Name:  {{details.firstName}} {{details.lastName}}</p>
             <p> email:  {{details.email}}</p>
             <span>send Data To</span>
@@ -65,11 +68,11 @@
 </template>
 
 <script>
-import Switch from './Switch'
+import AppSwitch from './Switch'
 export default {
     name: "FormPage",
     components: {
-        AppSwitch: Switch
+        AppSwitch
     },
     data () {
         return {
@@ -86,7 +89,13 @@ export default {
                 ],
                 currentStatus: "Doing",
                 stuff: true
-            }
+            },
+            formSubmited: false
+        }
+    },
+    methods: {
+        onSubmit() {
+            this.formSubmited= true
         }
     }
 }

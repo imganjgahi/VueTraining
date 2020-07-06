@@ -1,5 +1,5 @@
 <template>
-    <div class="switch">
+    <div class="switchInput">
         <div :class="{isOn: value}" @click="onChange(true)">On</div>
         <div :class="{isOff: !value}" @click="onChange(false)">Off</div>
     </div>
@@ -7,7 +7,7 @@
 
 <script>
 export default {
-    name: "Switch",
+    name: "AppSwitch",
     props: ['value'],
     methods: {
         onChange(switchValue){
@@ -19,7 +19,7 @@ export default {
 
 <style scoped>
 
-.switch {
+.switchInput {
     background-color: #ccc;
     width: 65px;
     display: flex;
@@ -30,7 +30,7 @@ export default {
 .isOff {
     background-color: lightcoral;
 }
-.switch div {
+.switchInput div {
 	flex: 1;
 	text-align: center;
 	cursor: pointer;
