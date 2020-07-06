@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <Quete>
-      <h2>Quote</h2>
-       <p>A simple Quete </p>
+      <h2 slot="title">{{message}}</h2>
+       <p slot="content">A simple Quete </p>
+       <p>other paragraph</p>
     </Quete>
   </div>
 </template>

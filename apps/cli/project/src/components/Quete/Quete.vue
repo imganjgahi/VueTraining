@@ -1,6 +1,10 @@
 <template>
     
     <div class="quete">
+        <div class="title">    
+        <slot name="title"></slot>
+        </div>
+       <slot name="content"></slot>
        <slot></slot>
     </div>
 </template>
@@ -20,5 +24,8 @@ export default {
     margin: 30px auto;
     box-shadow: 2px 2px 8px 3px #aaa;
     width: 60%;
+}
+.title {
+    color: red;
 }
 </style>
