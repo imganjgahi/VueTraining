@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <MainPage></MainPage>
+    <FormPage></FormPage>
   </div>
       
 </template>
 
 <script>
-import MainPage from './components/tasks/MainPage'
+import FormPage from './components/FormPage'
 export default {
   name: "App",
   data: () => ({
@@ -14,7 +14,7 @@ export default {
     selectedComponent: "Quete"
   }),
   components: {
-    MainPage
+    FormPage
   }
 };
 </script>
