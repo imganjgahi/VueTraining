@@ -1,17 +1,14 @@
 <template>
   <div id="app">
     <Header></Header>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <p> {{message}} </p>
-    <HomePage></HomePage>
+    <UserBlock></UserBlock>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import HomePage from './components/Home'
-import Header from './components/Header'
+import Header from './components/Header';
+import UserBlock from "./components/User/UserBlock"
 
 export default {
   name: 'App',
@@ -19,9 +16,8 @@ export default {
     message: "Data Message"
   }),
   components: {
-    // HelloWorld
     Header,
-    HomePage,
+    UserBlock
   }
 }
 </script>
