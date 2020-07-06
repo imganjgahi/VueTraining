@@ -14,7 +14,7 @@
 
 <script>
 export default {
-    name: "Quete"
+    name: "Quote"
 }
 </script>
 
