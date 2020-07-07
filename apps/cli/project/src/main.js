@@ -4,6 +4,9 @@ import App from './App.vue'
 Vue.config.productionTip = false
 export const eventBus = new Vue()
 
+Vue.filter('to-lowercase', (value) => {
+  return value.toLowerCase()
+})
 Vue.directive("highlight", {
   bind(el, binding, vnode){
     // el.style.backgroundColor = "lightcoral",
