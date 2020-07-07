@@ -5,7 +5,7 @@
         <p v-html="'<b><i> Some Text  </i></b>'"></p>
         <hr>
         <h1>Custom Directive</h1>
-        <p v-highlight> Highlight Directive</p>
+        <p v-highlight="'lightblue'"> Highlight Directive</p>
     </div>
 </template>
 

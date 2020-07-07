@@ -6,7 +6,8 @@ export const eventBus = new Vue()
 
 Vue.directive("highlight", {
   bind(el, binding, vnode){
-    el.style.backgroundColor = "lightcoral",
+    // el.style.backgroundColor = "lightcoral",
+    el.style.backgroundColor = binding.value,
     console.log(binding, vnode)
   }
 })
