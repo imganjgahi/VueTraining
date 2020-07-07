@@ -13,6 +13,7 @@
     <p v-local-highlight:background.delayed="'yellow'">Highlight Directive</p>
     <p v-local-highlight:background.delayed.blink="'yellow'">Blink</p>
     <p v-local-highlight:background.blink="'yellow'">Just Blink</p>
+    <p v-local-highlight:background.blink="{mainColor: 'yellow', secondColor: 'green', blinkDelay: 500}">Just Blink</p>
   </div>
 </template>
 
@@ -27,8 +28,8 @@ export default {
           delay = 3000;
         }
         if (binding.modifiers["blink"]) {
-          let mainColor = binding.value;
-          let secondColor = "coral";
+          let mainColor = binding.value.mainColor ? binding.value.mainColor : binding.value;
+          let secondColor = binding.value.secondColor ? binding.value.secondColor : "coral";
           let currentColor = mainColor;
           setTimeout(() => {
             setInterval(() => {
@@ -39,14 +40,14 @@ export default {
               } else {
                 el.style.color = currentColor;
               }
-            }, 1000);
+            }, binding.value.blinkDelay ? binding.value.blinkDelay : 1000);
           }, delay);
         } else {
           setTimeout(() => {
             if (binding.arg === "background") {
-              el.style.backgroundColor = binding.value;
+              el.style.backgroundColor = binding.value.mainColor ? binding.value.mainColor : binding.value;
             } else {
-              el.style.color = binding.value;
+              el.style.color = binding.value.mainColor ? binding.value.mainColor : binding.value;
             }
           }, delay);
         }
