@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <Directives></Directives>
+    <AppFilters></AppFilters>
   </div>
       
 </template>
 
 <script>
-import Directives from './components/Directives/Directives'
+import AppFilters from './components/Filters/Filters'
 export default {
   name: "App",
   data: () => ({
@@ -14,7 +14,7 @@ export default {
     selectedComponent: "Quete"
   }),
   components: {
-    Directives
+    AppFilters
   }
 };
 </script>
