@@ -13,6 +13,9 @@
         <transition name="fade">
           <div class="alert" v-if="showAlert">This is a alert</div>
         </transition>
+        <transition name="fade" appear>
+          <div class="alert" v-if="showAlert">This is a alert</div>
+        </transition>
         
       </div>
     </div>
@@ -24,7 +27,7 @@ export default {
   name: "AnimationPage",
   data() {
     return {
-      showAlert: false
+      showAlert: true
     };
   }
 };
