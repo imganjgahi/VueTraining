@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <AppFilters></AppFilters>
+    <AnimationPage></AnimationPage>
   </div>
       
 </template>
 
 <script>
-import AppFilters from './components/Filters/Filters'
+import AnimationPage from './components/Animation/MainPage'
 export default {
   name: "App",
   data: () => ({
@@ -14,7 +14,7 @@ export default {
     selectedComponent: "Quete"
   }),
   components: {
-    AppFilters
+    AnimationPage
   }
 };
 </script>
