@@ -27,7 +27,7 @@ export default {
   name: "AnimationPage",
   data() {
     return {
-      showAlert: true
+      showAlert: false
     };
   }
 };
