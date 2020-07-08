@@ -1,20 +1,18 @@
 <template>
   <div id="app">
-    <HomePage></HomePage>
+   <h1>App Layout</h1>
+   <hr>
+   <router-view></router-view>
   </div>
       
 </template>
 
 <script>
-import HomePage from './components/Pages/Home'
 export default {
   name: "App",
   data: () => ({
     message: "Data Message",
     selectedComponent: "Quete"
-  }),
-  components: {
-    HomePage
-  }
+  })
 };
 </script>
