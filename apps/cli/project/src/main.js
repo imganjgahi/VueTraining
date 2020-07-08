@@ -27,6 +27,11 @@ Vue.directive("highlight", {
     console.log(binding.arg, vnode)
   }
 })
+Vue.mixin({
+  created() {
+    console.log("Global Created");
+  }
+})
 new Vue({
   render: h => h(App),
 }).$mount('#app')
