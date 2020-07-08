@@ -7,9 +7,13 @@
         <button @click="showAlert = !showAlert">{{showAlert ? "Hide Alert" : "Show Alert"}}</button>
       </div>
       <div class="content">
+          <transition name="slide">
+          <div class="alert" v-if="showAlert">This is a alert</div>
+        </transition>
         <transition name="fade">
           <div class="alert" v-if="showAlert">This is a alert</div>
         </transition>
+        
       </div>
     </div>
   </div>
@@ -41,6 +45,40 @@ export default {
     transition: scale 250ms;
     scale: 0;
 }
+/* Animation class */
+.slide-enter {
+}
+.slide-enter-active {
+    animation: slide-in 0.25s ease-out forwards;
+}
+.slide-leave {
+}
+.slide-leave-active {
+    animation: slide-out 0.25s ease-out forwards;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes slide-out {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to{
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}
+
+/* Template style */
 h1 {
   text-align: center;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
@@ -74,5 +112,6 @@ h1 {
   width: 300px;
   border-radius: 5px;
   border: 2px solid darkblue;
+  margin: 25px 0;
 }
 </style>
