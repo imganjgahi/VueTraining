@@ -9,7 +9,8 @@
 export default {
     methods: {
         countEvent(amount){
-            this.$emit('updated', amount)
+            // this.$emit('updated', amount)
+            this.$store.state.counter += amount
         }
     }
 }
