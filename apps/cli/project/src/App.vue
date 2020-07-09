@@ -4,18 +4,22 @@
      <router-link to="/" class="app-link">Home</router-link>
      <router-link to="/user" class="app-link">User Page</router-link>
    </nav>
-   <router-view></router-view>
+   <div class="container">
+     <VuexApp></VuexApp>
+   </div>
   </div>
       
 </template>
 
 <script>
+import VuexApp from './components/VuexApp/VuexApp'
 export default {
   name: "App",
   data: () => ({
     message: "Data Message",
     selectedComponent: "Quete"
-  })
+  }),
+  components: {VuexApp}
 };
 </script>
 
@@ -38,5 +42,8 @@ nav {
 	background-color: white;
 	color: black;
 	border-radius: 5px;
+}
+.container{ 
+  padding: 0 25px;
 }
 </style>
