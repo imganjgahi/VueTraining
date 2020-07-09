@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from "vue-router";
 import { routes } from "./Routes";
+import { store } from "./store/store";
 
 Vue.use(VueRouter)
 
@@ -43,5 +44,6 @@ Vue.mixin({
 
 new Vue({
   render: h => h(App),
+  store,
   router,
 }).$mount('#app')
