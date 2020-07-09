@@ -7,7 +7,7 @@
             </p>
             <div class="userAction">
                 <router-link :to="'/user/'+user.id" >Detail</router-link>
-                <router-link :to="{name: 'userEdit', params:{id: user.id}}" >Edit</router-link>
+                <router-link :to="{name: 'userEdit', params:{id: user.id}, query:{lang: 'en', q: 100}}" >Edit</router-link>
             </div>
         </div>
     </div>
