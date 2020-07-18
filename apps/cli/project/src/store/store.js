@@ -5,6 +5,22 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        counter: 6
+        counter: 0
+    },
+    getters: {
+        doubleCounter:  state => {
+            return state.counter * 2;
+        },
+        stringCounter:  state => {
+            return state.counter + " Times!";
+        }
+    },
+    mutations: {
+        increment: state => {
+            state.counter++;
+        },
+        decrement: state => {
+            state.counter--;
+        },
     }
 })

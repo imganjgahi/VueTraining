@@ -1,17 +1,27 @@
 <template>
     <div class="actionbtn">
-        <button @click="countEvent(1)">UP</button>
-        <button @click="countEvent(-1)">Down</button>
+        <button @click="increment">UP</button>
+        <button @click="decrement">Down</button>
     </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
     methods: {
-        countEvent(amount){
-            // this.$emit('updated', amount)
-            this.$store.state.counter += amount
-        }
+        ...mapMutations([
+            "increment",
+            "decrement",
+        ]),
+        //before MapMutations
+        // countEvent(amount){
+        //     if(amount > 0){
+        //         this.$store.commit('increment')
+        //     } else {
+        //         this.$store.commit("decrement")
+        //     }
+        // }
+        
     }
 }
 </script>
