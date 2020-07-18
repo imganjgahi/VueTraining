@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         counter: 0,
+        userInput: ""
     },
     getters: {
         doubleCounter:  state => {
@@ -13,7 +14,7 @@ export const store = new Vuex.Store({
         },
         stringCounter:  state => {
             return state.counter;
-        }
+        },
     },
     mutations: {
         increment: (state, payload = 1) => {
@@ -22,6 +23,9 @@ export const store = new Vuex.Store({
         decrement: (state, payload) => {
             state.counter -= payload;
         },
+        updateUserInput: (state, payload) => {
+            state.userInput = payload
+        }
     },
     actions: {
         asyncIncrement: ({ commit }, payload) => {
@@ -36,6 +40,9 @@ export const store = new Vuex.Store({
         },
         decrement: ({ commit }, payload) => {
                 commit('decrement', payload)
+        },
+        updateUserInput: ({ commit }, payload) => {
+                commit('updateUserInput', payload)
         },
     }
 })
