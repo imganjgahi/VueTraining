@@ -1,5 +1,6 @@
 import { AUTH_STATE, IRegister } from './model'
-import axios from "../../../AxiosConfig"
+import axios from "../../../AxiosConfig";
+import router from "../../../router"
 const state: AUTH_STATE = {
     isAuth: false,
     loading: "",
@@ -20,7 +21,7 @@ const mutations = {
         console.log("Loadind", loader)
         state.loading = loader
     },
-    setAuthStatus(state: AUTH_STATE ,isAuth: boolean){
+    setAuthStatus(state: AUTH_STATE, isAuth: boolean){
         state.isAuth = isAuth
     },
     goto(state: AUTH_STATE, panelName: string) {
@@ -35,8 +36,10 @@ const actions = {
         commit("setLoading", "register")
         axios.post("/users", userData).then(respons => {
             console.log("RES: ", respons.data);
+            localStorage.setItem("Stock", respons.data[0]._id)
             commit("setLoading", "")
             commit("setAuthStatus", true)
+            router.push("/dashboard")
         }).catch(err => {
             console.log(err);
             commit("setLoading", "")
@@ -47,15 +50,23 @@ const actions = {
         commit("setLoading", "login")
         axios.get("/users?q=email:" + email).then(respons => {
             console.log("RES: ", respons.data);
+            localStorage.setItem("Stock", respons.data[0]._id)
             commit("setLoading", "")
             if(respons.data.length > 0){
                 commit("setAuthStatus", true)
+                router.push("/dashboard")
             }
         }).catch(err => {
             console.log(err);
             commit("setLoading", "")
         })
         
+    },
+    tryAutoLogin({commit}: {commit: (commitName: string, value: string | boolean) => void}) {
+        const storage = localStorage.getItem("Stock")
+        if(storage) {
+            commit("setAuthStatus", true)
+        }
     }
 }
 
