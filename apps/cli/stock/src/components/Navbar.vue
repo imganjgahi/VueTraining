@@ -4,12 +4,12 @@
 
         <div class="navLinks">
             <router-link to="/">Home</router-link>
-            <router-link to="/dashboard">Dashboard</router-link>
+            <router-link to="/dashboard" v-if="auth">Dashboard</router-link>
             <router-link to="/about">About</router-link>
         </div>
         <div>
-            <router-link v-if="!auth" to="/auth">Register/Login</router-link>
-            <router-link v-if="auth" to="/logout">Logout</router-link>
+            <router-link  to="/auth" v-if="!auth">Register/Login</router-link>
+            <router-link to="/auth" v-else >Logout</router-link>
         </div>
     </nav>
 </template>

@@ -10,6 +10,10 @@ import NavBar from './components/Navbar'
 export default {
   components: {
     NavBar
+  },
+  created() {
+    this.$store.dispatch("tryAutoLogin");
+      console.log("APP: ", this.$store.getters.isUserAuth)
   }
 }
 </script>

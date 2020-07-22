@@ -3,15 +3,12 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue';
 import Auth from '../views/Auth.vue';
+import store from '../store';
 
 Vue.use(VueRouter)
 
   const routes: Array<RouteConfig> = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
+  
   {
     path: '/about',
     name: 'About',
@@ -28,7 +25,21 @@ Vue.use(VueRouter)
   {
     path: '/auth',
     name: 'auth',
-    component: Auth
+    component: Auth,
+    beforeEnter(to, from, next){
+      store.dispatch("tryAutoLogin")
+      if(store.getters.isUserAuth){
+        console.log("User is Auth")
+        next("/dashboard")
+      } else {
+        next()
+      }
+    },
+  },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
   }
 ]
 
