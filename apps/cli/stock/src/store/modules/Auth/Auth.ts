@@ -18,7 +18,6 @@ const getters = {
 
 const mutations = {
     setLoading(state: AUTH_STATE, loader: string) {
-        console.log("Loadind", loader)
         state.loading = loader
     },
     setAuthStatus(state: AUTH_STATE, isAuth: boolean){
@@ -35,7 +34,6 @@ const actions = {
     userRegister({commit}: {commit: (commitName: string, value: string | boolean) => void}, userData: IRegister) {
         commit("setLoading", "register")
         axios.post("/users", userData).then(respons => {
-            console.log("RES: ", respons.data);
             localStorage.setItem("Stock", respons.data[0]._id)
             commit("setLoading", "")
             commit("setAuthStatus", true)
@@ -49,7 +47,6 @@ const actions = {
     loginUser({commit}: {commit: (commitName: string, value: string | boolean) => void}, email: string) {
         commit("setLoading", "login")
         axios.get("/users?q=email:" + email).then(respons => {
-            console.log("RES: ", respons.data);
             localStorage.setItem("Stock", respons.data[0]._id)
             commit("setLoading", "")
             if(respons.data.length > 0){

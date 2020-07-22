@@ -13,7 +13,6 @@ export default {
   },
   created() {
     this.$store.dispatch("tryAutoLogin");
-      console.log("APP: ", this.$store.getters.isUserAuth)
   }
 }
 </script>
