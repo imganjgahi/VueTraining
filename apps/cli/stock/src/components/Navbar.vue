@@ -9,7 +9,7 @@
         </div>
         <div>
             <router-link  to="/auth" v-if="!auth">Register/Login</router-link>
-            <router-link to="/auth" v-else >Logout</router-link>
+            <a href="#" v-else @click="logout($event)">Logout</a>
         </div>
     </nav>
 </template>
@@ -20,6 +20,12 @@ export default {
     computed: {
         auth() {
             return this.$store.getters.isUserAuth
+        }
+    },
+    methods: {
+        logout(e) {
+           e.preventDefault();
+           this.$store.commit("userLogOut")
         }
     }
 }

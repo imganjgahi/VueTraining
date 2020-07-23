@@ -25,6 +25,11 @@ const mutations = {
     },
     goto(state: AUTH_STATE, panelName: string) {
         state.panelName = panelName
+    },
+    userLogOut(state: AUTH_STATE) {
+        localStorage.clear();
+        state.isAuth = false
+        router.push("/")
     }
 
 }
