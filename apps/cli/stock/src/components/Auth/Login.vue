@@ -32,9 +32,3 @@ export default {
   }
 };
 </script>
-
-<style>
-  .formgroup label {
-    display: block;
-  }
-</style>

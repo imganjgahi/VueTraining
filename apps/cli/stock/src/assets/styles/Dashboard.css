@@ -1,0 +1,15 @@
+.dashboard {
+	display: flex;
+	justify-content: space-between;
+}
+
+.menu {
+	width: 250px;
+	border-left: 1px solid;
+	min-height: 90vh;
+}
+
+.content {
+	width: calc(95% - 250px);
+	margin: 0 auto;
+}
