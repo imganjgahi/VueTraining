@@ -2,21 +2,18 @@
   <div class="dashboard">
       <div class="content">
         <h1>Dashboard</h1>
-        <Payments />
-        <Deposits />
+        <Transactions />
       </div>
       <div class="menu">Menu</div>
   </div>
 </template>
 
 <script>
-import Deposits from '../components/Transactions/Deposits';
-import Payments from '../components/Transactions/Payments';
+import Transactions from '../components/Transactions/Transactions';
 export default {
   
   components: {
-    Deposits,
-    Payments,
+    Transactions,
   }
 }
 </script>

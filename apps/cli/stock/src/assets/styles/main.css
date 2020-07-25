@@ -10,4 +10,5 @@ body {
   }
 
 
-  @import "./Dashboard.css"
+  @import "./Dashboard.css";
+  @import "./Transactins.css";
