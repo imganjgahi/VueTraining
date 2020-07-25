@@ -11,7 +11,14 @@
       </form>
     </div>
     <div class="list">
-      <GridTable :dataProps="depositeList" :loading="true" />
+      <GridTable 
+      :columns="['title', 'amount', 'action']"
+      :dataProps="depositeList" 
+      :loading="true">
+        <template v-slot:default="record">
+        <button> {{record.item.id}} </button>
+        </template>
+      </GridTable>
     </div>
   </div>
 </template>
