@@ -10,11 +10,12 @@
 
 
 <script>
+import { eventBus } from '../../main'
 export default {
     props: {
         group: {
             type: String,
-            required: true
+            required: false
         },
         behaviour: {
             type: String,
@@ -25,6 +26,16 @@ export default {
         return {
             fields: {},
             validationBag: {}
+        }
+    },
+    created() {
+        eventBus.listen("initialize-" + this.group, this.initialize)
+    },
+    methods: {
+        initialize(data){
+            if(!Object.prototype.hasOwnProperty.call(this.validationBag, data.field)){
+                this.validationBag[data.field] = data.rules
+            }
         }
     }
 }
