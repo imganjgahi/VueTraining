@@ -9,9 +9,9 @@
     <tbody>
         <tr v-for="(item, index) in dataList" :key="index">
             <td v-for="(column, i) in columns" :key="i" >
-                <span v-if="!item.render"> {{ item[column] }} </span>
+                <slot :col="item[column]" :name="column"> {{item[column]}} </slot>
             </td>
-            <td> <slot :item="item"></slot> </td>
+            <td> <slot :item="item" name="actions"></slot> </td>
         </tr>
     </tbody>
 </table>

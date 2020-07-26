@@ -3,12 +3,23 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue';
 import Auth from '../views/Auth.vue';
+import FormTutorial from '../views/FormTutorial.vue';
 import store from '../store';
 
 Vue.use(VueRouter)
 
   const routes: Array<RouteConfig> = [
   
+    {
+      path: '/form',
+      name: 'form',
+      component: FormTutorial
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard
+    },
   {
     path: '/about',
     name: 'About',
@@ -17,11 +28,7 @@ Vue.use(VueRouter)
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: Dashboard
-  },
+  
   {
     path: '/auth',
     name: 'auth',
