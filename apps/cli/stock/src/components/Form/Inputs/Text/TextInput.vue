@@ -1,26 +1,33 @@
 <template>
-    <input 
-    type="text" 
-    :name="name" 
-    :id="identity"
-    :value="value"
-    :placeholder="placeholder"
-    :maxlength="maxlength"
-    :autocomplete="autocomplete"
-    v-focus="focus"
-    v-on="inputListener"
+    <div
+        v-if="show"
     >
+        <input 
+            type="text" 
+            :name="name" 
+            :id="identity"
+            :value="value"
+            :placeholder="placeholder"
+            :maxlength="maxlength"
+            :autocomplete="autocomplete"
+            v-on="inputListeners">
+    </div>
 </template>
 
 
 <script>
 import Helper from '../../../../utils/Helper';
 import { eventBus } from '../../../../main';
+import Error from '../../Validator/Error';
 
 export default {
 
     props: {
         group: {
+            type: String,
+            required: false
+        },
+        label: {
             type: String,
             required: false
         },
@@ -57,21 +64,36 @@ export default {
         validation: {
             type: [Array, Object],
             default: () => []
+        },
+        error: {
+            type: Object,
+            default: () => new Error
+        },
+        visible: {
+            type: Boolean,
+            default: true
         }
     },
     data() {
         return {
             identity: this.id ? this.id : this.name,
-            displayValidation: false
+            displayValidation: false,
+            show: this.visible
         }
     },
     computed: {
         inputListeners() {
             return Object.assign({}, this.$listeners, {
                 input: (event) => {
-                    this.emit(event.targte.value)
+                    this.emit(event.target.value)
                 }
             })
+        },
+        isInvalid() {
+            return this.error.has(this.name)
+        },
+        showValidation() {
+            return this.isInvalid && this.displayValidation
         }
     },
     mounted(){

@@ -16,11 +16,11 @@
                   v-model="props.fields.firstName"
                   maxlength="9"
                   autocomplete="given-name"
-                  :focus="true"
                   :validation="{
                     'min:2':'minimum is 2',
                     'max:5':'max is 5',
                   }"
+                  :error="props.error"
                   />
               </div>
               <div class="formgroup">
@@ -32,11 +32,12 @@
                   v-model="props.fields.lastName"
                   maxlength="9"
                   autocomplete="given-name"
-                  :focus="true"
                   :validation="['min:3', 'max:50']"
+                  :error="props.error"
                   />
               </div>
           </fieldset>
+      <button type="submit">Submit</button>
       </div>
     </FormWrapper>
   </div>
