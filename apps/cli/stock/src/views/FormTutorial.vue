@@ -8,23 +8,22 @@
               <legend>Personal Details</legend>
 
               <div class="formgroup">
-                  <label for="firstName"> First Name </label>
                   <TextInput 
                   :group="props.group"
+                  label="Frist Name"
                   name="firstName" 
                   placeholder= "First Name"
                   v-model="props.fields.firstName"
                   maxlength="9"
                   autocomplete="given-name"
                   :validation="{
+                    'required': 'field is required',
                     'min:2':'minimum is 2',
                     'max:5':'max is 5',
                   }"
-                  :error="props.error"
-                  />
+                  :error="props.error"></TextInput>
               </div>
               <div class="formgroup">
-                  <label for="lastName"> Last Name </label>
                   <TextInput 
                   :group="props.group"
                   name="lastName" 
@@ -32,9 +31,8 @@
                   v-model="props.fields.lastName"
                   maxlength="9"
                   autocomplete="given-name"
-                  :validation="['min:3', 'max:50']"
-                  :error="props.error"
-                  />
+                  :validation="['required', 'min:3', 'max:50']"
+                  :error="props.error"></TextInput>
               </div>
           </fieldset>
       <button type="submit">Submit</button>

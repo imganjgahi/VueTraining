@@ -1,0 +1,12 @@
+.validation{
+    display: inline-flex;
+}
+
+.validation .invalid {
+    margin: 0 15px;
+    color: red;
+    border: none;
+}
+input.invalid {
+    border: 1px solid red;
+}

@@ -1,7 +1,20 @@
 <template>
     <div
         v-if="show"
+        :class="computedWrapperCssClass"
+        :style="computedWrapperCssStyle"
     >
+    <slot>
+        <Validation
+        :label="label"
+        :id="identity"
+        :name="name"
+        :show="showValidation"
+        :cssClass="computedValidationCssClass"
+        :validation="validation"
+        :error="error"
+        ></Validation>
+    </slot>
         <input 
             type="text" 
             :name="name" 
@@ -10,6 +23,7 @@
             :placeholder="placeholder"
             :maxlength="maxlength"
             :autocomplete="autocomplete"
+            :class="computedValidationCssClass"
             v-on="inputListeners">
     </div>
 </template>
@@ -19,9 +33,13 @@
 import Helper from '../../../../utils/Helper';
 import { eventBus } from '../../../../main';
 import Error from '../../Validator/Error';
+import Validation from '../../Validator/Validation';
 
 export default {
 
+    components: {
+        Validation
+    },
     props: {
         group: {
             type: String,
@@ -72,6 +90,30 @@ export default {
         visible: {
             type: Boolean,
             default: true
+        },
+        inputCssClass: {
+            type: String,
+            required: false
+        },
+        validationCssClass: {
+            type: String,
+            default: "invalid"
+        },
+        wrapperCssClass: {
+            type: String,
+            required: false
+        },
+        wrapperErrorCssClass: {
+            type: String,
+            required: false
+        },
+        wrapperCssStyle: {
+            type: String,
+            required: false
+        },
+        wrapperErrorCssStyle: {
+            type: String,
+            required: false
         }
     },
     data() {
@@ -94,7 +136,28 @@ export default {
         },
         showValidation() {
             return this.isInvalid && this.displayValidation
-        }
+        },
+        computedValidationCssClass() {
+            return {
+                [this.validationCssClass]: this.isInvalid
+            }
+        },
+        computedWrapperCssClass() {
+            return [
+                {
+                [this.wrapperErrorCssClass]: this.isInvalid
+                },
+                this.wrapperCssClass
+            ]
+        },
+        computedWrapperCssStyle() {
+            return [
+                {
+                [this.wrapperErrorCssStyle]: this.isInvalid
+            },
+            this.wrapperCssStyle
+            ]
+        },
     },
     mounted(){
         this.emit(this.currentValue);
@@ -122,3 +185,15 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+input {
+	width: 100%;
+	padding: 5px;
+	margin: 5px 0;
+	box-sizing: border-box;
+	min-height: 30px;
+	border-radius: 5px;
+	border: 1px solid #888;
+}
+</style>
