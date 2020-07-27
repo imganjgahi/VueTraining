@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <TopDialog />
     <NavBar />
     <router-view />
   </div>
@@ -7,9 +8,11 @@
 
 <script>
 import NavBar from './components/Navbar'
+import TopDialog from './components/Dialogs/TopDialog'
 export default {
   components: {
-    NavBar
+    NavBar,
+    TopDialog
   },
   created() {
     this.$store.dispatch("tryAutoLogin");

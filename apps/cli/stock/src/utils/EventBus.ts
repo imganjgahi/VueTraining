@@ -7,7 +7,7 @@ export default class EventBus {
         this.bus = new Vue()
     }
 
-    fire(events: string | string[], ...data: string[]){
+    fire(events: string | string[], ...data: any){
         this.wrapper(events, 
             () => {  this.bus.$emit((events as string), ...data) } , 
             (index: number) => { this.bus.$emit(events[index], ...data) })

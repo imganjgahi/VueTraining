@@ -10,3 +10,21 @@
 input.invalid {
     border: 1px solid red;
 }
+
+.dialog {
+	display: none;
+}
+.alert {
+    color: red;
+}
+
+.warning {
+    color: orange;
+}
+
+.confirm {
+    color: yellowgreen;
+}
+.dialog.active {
+	display: block;
+}
