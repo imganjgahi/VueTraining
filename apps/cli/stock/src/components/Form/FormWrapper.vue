@@ -40,6 +40,7 @@ export default {
     created() {
         eventBus.listen("initialize-" + this.group, this.initialize)
         eventBus.listen("checkValue-" + this.group, this.checkValue)
+        eventBus.listen("submit-" + this.group, this.submitHandler)
     },
     methods: {
         initialize(data){

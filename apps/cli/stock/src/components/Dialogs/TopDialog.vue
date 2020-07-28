@@ -2,7 +2,13 @@
     <div id="topDialog" :class="wrapperClass">
         <div class="dialog alert" :class="visibleClass('alert')" v-html="message" @click="clear"></div>
         <div class="dialog warning" :class="visibleClass('warning')" v-html="message" @click="clear"></div>
-        <div class="dialog confirm" :class="visibleClass('confirm')" v-html="message" @click="clear"></div>
+        <div class="dialog confirm" :class="visibleClass('confirm')">
+            <p> {{message}} </p>
+            <nav class="confirmDialogNav">
+                <span class="small button" v-if="!processing" @click="makeCall">YES</span>
+                <span class="small btn-danger button" v-if="!processing" @click="clear">NO</span>
+            </nav>
+        </div>
     </div>
 </template>
 
@@ -14,10 +20,17 @@ interface DataType {
         type: string | null;
         message: string;
         timeout: null | number;
+        processing: boolean;
+        url: null | string;
+        data: any;
+        method: string;
     }
 interface AlertDataType {
         id: string;
         message: string;
+        url: string;
+        data: any;
+        method: string;
 }
 export default Vue.extend({
     props: {
@@ -31,8 +44,12 @@ export default Vue.extend({
         return {
             id: null,
             type: null,
+            url: null,
+            data: {},
+            method: "get",
             message: "",
-            timeout: null
+            timeout: null,
+            processing: false
         }
     },
     computed: {
@@ -66,6 +83,10 @@ export default Vue.extend({
             this.clearCountDown();
             this.type = null;
             this.message = "";
+            this.url = null;
+            this.data = {};
+            this.method = "get";
+            this.processing = false;
             eventBus.fire(this.id +'-cleared', data || [])
         },
         clearCountDown() {
@@ -91,7 +112,32 @@ export default Vue.extend({
             this.alert(data, 'warning')
         },
         confirmEvent(data: AlertDataType) {
-            this.alert(data, 'confirm')
+            this.clear()
+            this.id = data.id;
+            this.message = data.message;
+            this.type = 'confirm';
+            if(data.url) {
+                this.url = data.url
+            }
+            if(data.method) {
+                this.method = data.method.toLowerCase()
+            }
+            if(data.data) {
+                this.data = data.data
+            }
+        },
+        makeCall() {
+            if(this.url){
+                console.log(this.url)
+            } else {
+                this.success(this.message)
+            }
+        },
+        success(response: any) {
+            eventBus.fire(this.id + '-called', {
+                response: response,
+                dialog: this
+            })
         },
 
         countDown() {
