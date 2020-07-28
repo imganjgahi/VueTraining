@@ -4,17 +4,9 @@
         :class="computedWrapperCssClass"
         :style="computedWrapperCssStyle"
     >
+    <div class="group">
     <slot>
-        <Validation
-        :label="label"
-        :id="identity"
-        :name="name"
-        :show="showValidation"
-        :cssClass="computedValidationCssClass"
-        :validation="validation"
-        :error="error"
-        ></Validation>
-    </slot>
+        
         <input 
             type="text" 
             :name="name" 
@@ -26,6 +18,18 @@
             :class="computedValidationCssClass"
             v-focus="focus"
             v-on="inputListeners">
+
+        <Validation
+        :label="label"
+        :id="identity"
+        :name="name"
+        :show="showValidation"
+        :cssClass="computedValidationCssClass"
+        :validation="validation"
+        :error="error"
+        ></Validation>
+    </slot>
+            </div>
     </div>
 </template>
 
@@ -140,7 +144,8 @@ export default {
         },
         computedValidationCssClass() {
             return {
-                [this.validationCssClass]: this.isInvalid
+                [this.validationCssClass]: this.isInvalid,
+                ['hasValue']: this.value.length > 0
             }
         },
         computedWrapperCssClass() {
@@ -188,15 +193,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-input {
-	width: 100%;
-	padding: 5px;
-	margin: 5px 0;
-	box-sizing: border-box;
-	min-height: 30px;
-	border-radius: 5px;
-	border: 1px solid #888;
-}
-</style>

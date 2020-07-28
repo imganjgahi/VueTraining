@@ -52,15 +52,3 @@ export default {
   }
 };
 </script>
-
-<style>
-  .formgroup label {
-    display: block;
-  }
-  .switchPanel {
-    display: block;
-    color: coral;
-    cursor: pointer;
-    margin: 10px 0;
-  }
-</style>
