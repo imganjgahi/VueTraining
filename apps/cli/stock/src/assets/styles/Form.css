@@ -1,3 +1,10 @@
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 .validation{
     display: inline-flex;
 }
@@ -8,23 +15,32 @@
     border: none;
 }
 input.invalid {
-    border-bottom: 2px solid red;
+    border-color: red;
 }
 
 .dialog {
-	display: none;
+	height: 70px;
+	position: fixed;
+	width: 100%;
+	color: white;
+	text-align: center;
+	padding-top: 20px;
+	box-sizing: border-box;
+	top: -80px;
+    transition: all 250ms;
+    z-index: 20;
 }
 .alert {
-    color: red;
+    background-color: red;
 }
 
 .warning {
-    color: orange;
+    background-color: orange;
 }
 
 .confirm {
-    color: yellowgreen;
+    background-color: #00854d;
 }
 .dialog.active {
-	display: block;
+    top: 0;
 }

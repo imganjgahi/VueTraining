@@ -17,6 +17,7 @@ import { eventBus } from '../../main';
 import Helper from '../../utils/Helper';
 import Error from './Validator/Error';
 import Validator from './Validator/Validator';
+import ErrorHandler from '@/utils/ErrorHandler';
 export default {
     props: {
         group: {
@@ -88,7 +89,7 @@ export default {
             console.log("makeCall")
         },
         makeFailed(error){
-            console.log("makeFail", error)
+            ErrorHandler.showError(error, null)
         },
         submitHandler() {
             this.validate().then(this.makeCall).catch(this.makeFailed)
