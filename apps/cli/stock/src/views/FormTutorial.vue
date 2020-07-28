@@ -10,7 +10,8 @@
               <div class="formgroup">
                   <TextInput 
                   :group="props.group"
-                  label="Frist Name"
+                  label="First Name"
+                  :focus="true"
                   name="firstName" 
                   placeholder= "First Name"
                   v-model="props.fields.firstName"

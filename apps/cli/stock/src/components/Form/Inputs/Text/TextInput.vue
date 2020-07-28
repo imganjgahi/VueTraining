@@ -24,6 +24,7 @@
             :maxlength="maxlength"
             :autocomplete="autocomplete"
             :class="computedValidationCssClass"
+            v-focus="focus"
             v-on="inputListeners">
     </div>
 </template>
