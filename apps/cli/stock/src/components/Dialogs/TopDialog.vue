@@ -51,16 +51,6 @@ export default Vue.extend({
         eventBus.listen('top-warning', this.warningEvent)
         eventBus.listen('top-confirm', this.confirmEvent)
     },
-    mounted(){
-        // if(Object.keys(this.sessionDialog).length){
-            setTimeout(() => {
-                eventBus.fire("top-confirm", {
-                    id: 'session-top-alert',
-                    message: "this.sessionDialog.message" 
-                })
-            }, 2000);
-        // }
-    },
     methods: {
         typeIs(type: string){
             return this.type === type
