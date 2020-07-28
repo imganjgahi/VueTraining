@@ -166,8 +166,10 @@ export default {
     },
     methods: {
         emit(value){
-            this.$emit("input", value)
+            this.$emit("input", value);
+            eventBus.fire("checkValue-"+ this.group, this.name)
         },
+        
         initialize(){
             if(Helper.isEmpty(this.validation)){
                 return;

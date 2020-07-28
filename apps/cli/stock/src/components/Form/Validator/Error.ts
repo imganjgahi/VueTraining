@@ -8,6 +8,9 @@ export default class Error {
     set(error: {[key: string]: string}) {
         this.error = error
     }
+    append(error: {[key: string]: string}) {
+        this.error = error
+    }
 
     all() {
         this.error

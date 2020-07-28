@@ -16,7 +16,7 @@ export default class Rule {
 
     static min(value: string, params: string | number) {
         if(typeof value === 'string'){
-           return Rule.validateIfNotEmpty(value, () => {
+            return Rule.validateIfNotEmpty(value, () => {
                 return value.length >= params
             })
         }

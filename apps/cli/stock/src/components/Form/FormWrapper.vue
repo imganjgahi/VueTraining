@@ -33,16 +33,40 @@ export default {
             fields: {},
             validationBag: {},
             error: new Error,
+            touchFiled: [],
         }
     },
     created() {
         eventBus.listen("initialize-" + this.group, this.initialize)
+        eventBus.listen("checkValue-" + this.group, this.checkValue)
     },
     methods: {
         initialize(data){
             if(!Object.prototype.hasOwnProperty.call(this.validationBag, data.field)){
                 this.validationBag[data.field] = data.rules
             }
+            this.touchFiled = []
+        },
+        checkValue(fieldName){
+            this.filedValidate(fieldName)
+        },
+        filedValidate(fieldName) {
+            return new Promise((resolve, reject) => {
+                if(!this.requireValidation()){
+                    resolve();
+                    return
+                }
+                this.touchFiled.push(fieldName);
+                const upadetList = [...new Set(this.touchFiled)];
+                const fildsList = {}
+                upadetList.forEach(item => {
+                    if(this.validationBag[item]){
+                        fildsList[item]= this.validationBag[item]
+                    }
+                })
+                new Validator(this, resolve, reject, fildsList)
+
+            })
         },
         requireValidation() {
             return !Helper.isEmpty(this.validationBag)

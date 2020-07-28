@@ -53,11 +53,6 @@ export default Vue.extend({
             return this.label || this.show
         }
     },
-    watch: {
-        show(){
-            console.log(this.show)
-        }
-    },
     methods: {
         showError(rule: string){
             return this.error.has(this.name, rule.split(":")[0])
